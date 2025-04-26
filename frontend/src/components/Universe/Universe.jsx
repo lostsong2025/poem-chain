@@ -1,29 +1,19 @@
-.universe {
-  width: 100vw;
-  height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  color: white;
-  background-color: #0a0a2a;
+import React from 'react';
+import './Universe.css';
+
+function Universe({ language }) {
+  return (
+    <div className="universe">
+      <div className="universe-content">
+        <h1 className="universe-title">Poem Chain</h1>
+        <p className="universe-slogan">
+          {language === 'en' 
+            ? 'Every true poet writes what no one else can write'
+            : '每个真正的诗人都在书写无人能写的诗'}
+        </p>
+      </div>
+    </div>
+  );
 }
 
-.universe-content {
-  text-align: center;
-}
-
-.universe-title {
-  font-size: 5rem;
-  font-weight: bold;
-  margin-bottom: 2rem;
-  color: white;
-}
-
-.universe-slogan {
-  font-size: 1.8rem;
-  color: rgba(255, 255, 255, 0.9);
-  margin-bottom: 3rem;
-  font-weight: 300;
-  letter-spacing: 1px;
-}
+export default Universe;
