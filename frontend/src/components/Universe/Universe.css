@@ -167,7 +167,6 @@
   border-color: rgba(255, 255, 255, 0.3);
 }
 
-/* 添加飘动诗句的样式 */
 .floating-poems {
   position: absolute;
   top: 0;
@@ -195,14 +194,12 @@
   }
 }
 
-/* 添加输入框焦点样式 */
 .search-input:focus {
   outline: none;
   border-color: rgba(255, 255, 255, 0.4);
   background: rgba(255, 255, 255, 0.15);
 }
 
-/* 添加按钮按下效果 */
 .nav-button:active,
 .search-button:active,
 .connect-button:active,
@@ -210,7 +207,6 @@
   transform: scale(0.98);
 }
 
-/* 添加平滑过渡效果 */
 * {
   transition: all 0.3s ease;
 }
