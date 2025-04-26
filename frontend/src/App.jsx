@@ -7,7 +7,7 @@ import { CONTRACT_ADDRESS, CONTRACT_ABI } from "./utils/contractInfo";
 import './App.css';
 
 function App() {
-  const [currentLang, setCurrentLang] = useState('zh');
+  const [currentLang, setCurrentLang] = useState('en');
   const [contract, setContract] = useState(null);
   const [account, setAccount] = useState(null);
   const t = translations[currentLang];
