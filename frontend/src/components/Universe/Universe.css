@@ -1,139 +1,30 @@
-/* 重置和全局样式 */
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
-:root {
-  --primary-bg: #0a0a2a;
-  --nav-bg: rgba(10, 10, 42, 0.95);
-  --text-primary: #ffffff;
-  --text-secondary: rgba(255, 255, 255, 0.8);
-  --button-bg: rgba(255, 255, 255, 0.1);
-  --button-border: rgba(255, 255, 255, 0.2);
-  --button-hover-bg: rgba(255, 255, 255, 0.15);
-  --button-hover-border: rgba(255, 255, 255, 0.3);
-}
-
-body {
-  background-color: var(--primary-bg);
-  color: var(--text-primary);
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
-  min-height: 100vh;
-  margin: 0;
-  padding: 0;
-}
-
-/* 主容器 */
 .universe {
   min-height: 100vh;
-  background-color: var(--primary-bg);
-  display: flex;
-  flex-direction: column;
-}
-
-/* 中心内容 */
-.main-content {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
   padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: white;
 }
 
-/* 标题样式 */
-.title {
+.universe-content {
+  text-align: center;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.universe-title {
   font-size: 5rem;
   font-weight: bold;
-  color: var(--text-primary);
-  text-align: center;
-  margin-bottom: 1rem;
-}
-
-/* 标语样式 */
-.slogan {
-  font-size: 1.5rem;
-  color: var(--text-secondary);
-  text-align: center;
   margin-bottom: 2rem;
+  color: white;
 }
 
-/* 导航栏 */
-.nav-bar {
-  background-color: var(--nav-bg);
-  padding: 1rem 2rem;
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  backdrop-filter: blur(10px);
-  border-top: 1px solid var(--button-border);
-}
-
-.nav-content {
-  max-width: 1200px;
-  margin: 0 auto;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.nav-left {
-  display: flex;
-  gap: 1rem;
-}
-
-/* 按钮样式 */
-.nav-button {
-  background-color: var(--button-bg);
-  border: 1px solid var(--button-border);
-  color: var(--text-primary);
-  padding: 0.5rem 1rem;
-  border-radius: 6px;
-  cursor: pointer;
-  font-size: 1rem;
-  transition: all 0.2s ease;
-}
-
-.nav-button:hover {
-  background-color: var(--button-hover-bg);
-  border-color: var(--button-hover-border);
-}
-
-/* 钱包地址样式 */
-.wallet-address {
-  background-color: var(--button-bg);
-  border: 1px solid var(--button-border);
-  color: var(--text-primary);
-  padding: 0.5rem 1rem;
-  border-radius: 6px;
-  font-family: monospace;
-  font-size: 0.9rem;
-}
-
-/* 响应式设计 */
-@media (max-width: 768px) {
-  .title {
-    font-size: 3rem;
-  }
-  
-  .slogan {
-    font-size: 1.2rem;
-  }
-  
-  .nav-content {
-    flex-direction: column;
-    gap: 1rem;
-  }
-  
-  .nav-left {
-    width: 100%;
-    justify-content: center;
-  }
-  
-  .nav-button {
-    padding: 0.5rem 0.8rem;
-  }
+.universe-slogan {
+  font-size: 1.8rem;
+  color: rgba(255, 255, 255, 0.9);
+  margin-bottom: 3rem;
+  font-weight: 300;
+  letter-spacing: 1px;
 }
