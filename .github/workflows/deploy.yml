@@ -18,16 +18,20 @@ jobs:
           node-version: '18'
 
       - name: Install Dependencies
-        run: npm install
+        run: |
+          cd frontend
+          npm install
 
       - name: Build
-        run: npm run build
+        run: |
+          cd frontend
+          npm run build
         env:
-          REACT_APP_INFURA_ID: ${{ secrets.INFURA_ID }}
-          REACT_APP_CONTRACT_ADDRESS: ${{ secrets.CONTRACT_ADDRESS }}
+          VITE_INFURA_ID: ${{ secrets.INFURA_ID }}
+          VITE_CONTRACT_ADDRESS: ${{ secrets.CONTRACT_ADDRESS }}
 
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./build
+          publish_dir: ./frontend/dist  # Vite 默认输出目录是 dist
