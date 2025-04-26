@@ -1,7 +1,7 @@
 import React from 'react';
 import './Universe.css';
 
-const Universe = ({ contract, account, currentLang, onLanguageChange }) => {
+const Universe = ({ contract, account, currentLang, onLanguageChange, connectWallet }) => {
   const translations = {
     zh: {
       title: "诗链",
