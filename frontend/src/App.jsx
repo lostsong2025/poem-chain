@@ -8,7 +8,7 @@ import './App.css';
 function App() {
   const [contract, setContract] = useState(null);
   const [account, setAccount] = useState(null);
-  const [language, setLanguage] = useState('en'); // 添加语言状态
+  const [language, setLanguage] = useState('en');
 
   const connectWallet = async () => {
     try {
@@ -33,21 +33,18 @@ function App() {
 
   return (
     <div className="app-container">
-      <div className="language-switch">
-        <button onClick={() => setLanguage(language === 'en' ? 'zh' : 'en')}>
-          {language === 'en' ? '中文' : 'EN'}
-        </button>
-      </div>
-      <Universe />
+      <button 
+        className="language-switch-button"
+        onClick={() => setLanguage(language === 'en' ? 'zh' : 'en')}
+      >
+        {language === 'en' ? '中文' : 'EN'}
+      </button>
+      <Universe language={language} />
       <Navigation 
         account={account}
         connectWallet={connectWallet}
+        language={language}
       />
-    </div>
-  );
-}
-
-export default App;
     </div>
   );
 }
