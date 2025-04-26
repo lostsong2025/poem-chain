@@ -9,34 +9,35 @@ function Navigation({ account, connectWallet, language, setLanguage }) {
     setLanguage(language === 'en' ? 'zh' : 'en');
   };
 
+  const formatAddress = (address) => {
+    return `${address.slice(0, 6)}...${address.slice(-4)}`;
+  };
+
   return (
-    <nav className="navigation">
-      <div className="nav-left">
-        <h1 className="nav-title">Poetry Chain</h1>
-      </div>
-      <div className="nav-center">
-        <input
-          type="text"
-          className="search-input"
-          placeholder={t('searchPlaceholder')}
-        />
-        <button className="search-button">{t('search')}</button>
-      </div>
+    <>
       <div className="nav-right">
-        <button className="language-button" onClick={toggleLanguage}>
+        <button className="language-switch" onClick={toggleLanguage}>
           {language === 'en' ? '中文' : 'EN'}
         </button>
-        {account ? (
+        {account && (
           <span className="account-display">
-            {`${account.slice(0, 6)}...${account.slice(-4)}`}
+            {formatAddress(account)}
           </span>
-        ) : (
-          <button className="connect-button" onClick={connectWallet}>
-            {t('connectWallet')}
-          </button>
         )}
       </div>
-    </nav>
+      <nav className="navigation">
+        <div className="nav-left">
+          <button className="nav-button active">Home</button>
+          <button className="nav-button">My Poems</button>
+          <button className="nav-button">Create Poem</button>
+          {!account && (
+            <button className="nav-button active" onClick={connectWallet}>
+              {t('connectWallet')}
+            </button>
+          )}
+        </div>
+      </nav>
+    </>
   );
 }
 
