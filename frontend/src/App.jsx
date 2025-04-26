@@ -1,58 +1,58 @@
 import React, { useState, useEffect } from 'react';
 import { ethers } from 'ethers';
-import Universe from "./components/Universe/Universe";
-import { translations } from "./i18n/translations";
-import { CONTRACT_ADDRESS, CONTRACT_ABI } from "./utils/contractInfo";
+import { useTranslation } from 'react-i18next';
+import Universe from './components/Universe/Universe';
+import Navigation from './components/Navigation/Navigation';
 import './App.css';
+import PoemChainABI from './contracts/PoemChain.json';
 
 function App() {
-  const [currentLang, setCurrentLang] = useState('en');
+  const [account, setAccount] = useState('');
   const [contract, setContract] = useState(null);
-  const [account, setAccount] = useState(null);
-  const t = translations[currentLang];
-
-  const handleLanguageChange = (lang) => {
-    setCurrentLang(lang);
-  };
+  const [language, setLanguage] = useState('en');
+  const { i18n } = useTranslation();
 
   const connectWallet = async () => {
     try {
       if (window.ethereum) {
         const provider = new ethers.providers.Web3Provider(window.ethereum);
-        await provider.send("eth_requestAccounts", []);
         const signer = provider.getSigner();
-        
-        const poemContract = new ethers.Contract(
-          CONTRACT_ADDRESS,
-          CONTRACT_ABI,
+        const accounts = await window.ethereum.request({
+          method: 'eth_requestAccounts',
+        });
+
+        const contractAddress = '0x5FbDB2315678afecb367f032d93F642f64180aa3';
+        const contractInstance = new ethers.Contract(
+          contractAddress,
+          PoemChainABI.abi,
           signer
         );
 
-        const address = await signer.getAddress();
-        setAccount(address);
-        setContract(poemContract);
-
-        console.log("Connected to:", address);
-        console.log("Contract at:", CONTRACT_ADDRESS);
+        setAccount(accounts[0]);
+        setContract(contractInstance);
       } else {
-        console.error("Please install MetaMask!");
+        console.log('Please install MetaMask');
       }
     } catch (error) {
-      console.error("Connection error:", error);
+      console.error('Error connecting wallet:', error);
     }
   };
 
   useEffect(() => {
-    connectWallet();
-  }, []);
+    i18n.changeLanguage(language);
+  }, [language, i18n]);
 
   return (
     <div className="app">
-      <Universe 
-        contract={contract}
+      <Navigation 
         account={account}
-        currentLang={currentLang}
-        onLanguageChange={handleLanguageChange}
+        connectWallet={connectWallet}
+        language={language}
+        setLanguage={setLanguage}
+      />
+      <Universe 
+        account={account}
+        contract={contract}
         connectWallet={connectWallet}
       />
     </div>
