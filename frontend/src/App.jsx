@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import { ethers } from 'ethers';
-import { useTranslation } from 'react-i18next';
 import Universe from './components/Universe/Universe';
 import Navigation from './components/Navigation/Navigation';
 import PoemChainABI from './contracts/PoemChain.json';
@@ -9,8 +8,6 @@ import './App.css';
 function App() {
   const [account, setAccount] = useState('');
   const [contract, setContract] = useState(null);
-  const [language, setLanguage] = useState('en');
-  const { i18n } = useTranslation();
 
   const connectWallet = async () => {
     try {
@@ -39,21 +36,28 @@ function App() {
   };
 
   useEffect(() => {
-    i18n.changeLanguage(language);
-  }, [language, i18n]);
+    const checkWallet = async () => {
+      if (window.ethereum) {
+        try {
+          const accounts = await window.ethereum.request({ method: 'eth_accounts' });
+          if (accounts.length > 0) {
+            connectWallet();
+          }
+        } catch (error) {
+          console.error('Error checking wallet:', error);
+        }
+      }
+    };
+
+    checkWallet();
+  }, []);
 
   return (
     <div className="app">
-      <Universe 
-        account={account}
-        contract={contract}
-        connectWallet={connectWallet}
-      />
+      <Universe />
       <Navigation 
         account={account}
         connectWallet={connectWallet}
-        language={language}
-        setLanguage={setLanguage}
       />
     </div>
   );
