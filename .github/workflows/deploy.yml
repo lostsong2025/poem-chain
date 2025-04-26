@@ -1,37 +1,17 @@
-name: Deploy to GitHub Pages
+import React from 'react';
+import './Universe.css';
 
-on:
-  push:
-    branches:
-      - main
+function Universe() {
+  return (
+    <div className="universe">
+      <div className="universe-content">
+        <h1 className="universe-title">Poem Chain</h1>
+        <p className="universe-slogan">
+          Every true poet writes what no one else can write
+        </p>
+      </div>
+    </div>
+  );
+}
 
-jobs:
-  deploy:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v3
-
-      - name: Setup Node.js
-        uses: actions/setup-node@v3
-        with:
-          node-version: '18'
-
-      - name: Install Dependencies
-        run: |
-          cd frontend
-          npm install
-
-      - name: Build
-        run: |
-          cd frontend
-          npm run build
-        env:
-          VITE_INFURA_ID: ${{ secrets.INFURA_ID }}
-          VITE_CONTRACT_ADDRESS: ${{ secrets.CONTRACT_ADDRESS }}
-
-      - name: Deploy to GitHub Pages
-        uses: peaceiris/actions-gh-pages@v3
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./frontend/dist  # Vite 默认输出目录是 dist
+export default Universe;
