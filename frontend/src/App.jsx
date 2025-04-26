@@ -3,8 +3,8 @@ import { ethers } from 'ethers';
 import { useTranslation } from 'react-i18next';
 import Universe from './components/Universe/Universe';
 import Navigation from './components/Navigation/Navigation';
-import './App.css';
 import PoemChainABI from './contracts/PoemChain.json';
+import './App.css';
 
 function App() {
   const [account, setAccount] = useState('');
@@ -44,16 +44,16 @@ function App() {
 
   return (
     <div className="app">
+      <Universe 
+        account={account}
+        contract={contract}
+        connectWallet={connectWallet}
+      />
       <Navigation 
         account={account}
         connectWallet={connectWallet}
         language={language}
         setLanguage={setLanguage}
-      />
-      <Universe 
-        account={account}
-        contract={contract}
-        connectWallet={connectWallet}
       />
     </div>
   );
