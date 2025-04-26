@@ -1,40 +1,43 @@
 import React from 'react';
-import LanguageSwitch from './LanguageSwitch';
+import { useTranslation } from 'react-i18next';
 import './Navigation.css';
 
-const Navigation = ({ t, currentLang, onLanguageChange, account, connectWallet }) => {
+function Navigation({ account, connectWallet, language, setLanguage }) {
+  const { t } = useTranslation();
+
+  const toggleLanguage = () => {
+    setLanguage(language === 'en' ? 'zh' : 'en');
+  };
+
   return (
     <nav className="navigation">
+      <div className="nav-left">
+        <h1 className="nav-title">Poetry Chain</h1>
+      </div>
       <div className="nav-center">
-        <button className="nav-button">{t.nav.home}</button>
-        <button className="nav-button">{t.nav.myPoems}</button>
-        <button className="nav-button">{t.nav.createPoem}</button>
+        <input
+          type="text"
+          className="search-input"
+          placeholder={t('searchPlaceholder')}
+        />
+        <button className="search-button">{t('search')}</button>
       </div>
       <div className="nav-right">
-        <div className="search-container">
-          <input 
-            type="text" 
-            className="search-input" 
-            placeholder={t.nav.searchPlaceholder} 
-          />
-          <button className="search-button">{t.nav.search}</button>
-        </div>
-        <LanguageSwitch 
-          currentLang={currentLang}
-          onLanguageChange={onLanguageChange}
-        />
+        <button className="language-button" onClick={toggleLanguage}>
+          {language === 'en' ? '中文' : 'EN'}
+        </button>
         {account ? (
-          <span className="wallet-address">
+          <span className="account-display">
             {`${account.slice(0, 6)}...${account.slice(-4)}`}
           </span>
         ) : (
           <button className="connect-button" onClick={connectWallet}>
-            {t.nav.connectWallet}
+            {t('connectWallet')}
           </button>
         )}
       </div>
     </nav>
   );
-};
+}
 
 export default Navigation;
