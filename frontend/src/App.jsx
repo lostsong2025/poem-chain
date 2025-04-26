@@ -18,15 +18,10 @@ function App() {
 
   const connectWallet = async () => {
     try {
-      // 直接创建 provider，不进行网络检测
-      const provider = new ethers.providers.JsonRpcProvider({
-        url: 'http://127.0.0.1:8545',
-        chainId: 31337,
-        name: 'hardhat'
-      });
-
-      // 直接使用 provider 创建 signer
-      const signer = provider.getSigner(0);
+      // 使用 MetaMask
+      const provider = new ethers.providers.Web3Provider(window.ethereum);
+      await provider.send("eth_requestAccounts", []);
+      const signer = provider.getSigner();
       
       // 创建合约实例
       const poemContract = new ethers.Contract(
@@ -40,9 +35,6 @@ function App() {
       setAccount(address);
       setContract(poemContract);
 
-      console.log("Connected to:", address);
-      console.log("Contract at:", CONTRACT_ADDRESS);
-
     } catch (error) {
       console.error("Connection error:", error);
     }
@@ -54,21 +46,13 @@ function App() {
 
   return (
     <div className="app">
-      <nav className="nav-bar">
-        <div className="nav-left">每个真正的诗人都在书写无人能写的诗</div>
-        <div className="nav-center">
-          <span>首页</span>
-          <span>我的诗歌</span>
-          <span>创建诗歌</span>
-        </div>
-        <div className="nav-right">
-          <input type="text" placeholder="搜索诗歌..." />
-          <button className="search-btn">搜索</button>
-          <span className="wallet-address">
-            {account ? `${account.slice(0, 6)}...${account.slice(-4)}` : '连接钱包'}
-          </span>
-        </div>
-      </nav>
+      <Navigation 
+        t={t}
+        currentLang={currentLang}
+        onLanguageChange={handleLanguageChange}
+        account={account}
+        connectWallet={connectWallet}
+      />
       <main className="main-content">
         <Universe 
           contract={contract}
