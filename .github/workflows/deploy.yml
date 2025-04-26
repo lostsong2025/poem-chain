@@ -1,17 +1,33 @@
-import React from 'react';
-import './Universe.css';
+name: Deploy to GitHub Pages
 
-function Universe() {
-  return (
-    <div className="universe">
-      <div className="universe-content">
-        <h1 className="universe-title">Poem Chain</h1>
-        <p className="universe-slogan">
-          Every true poet writes what no one else can write
-        </p>
-      </div>
-    </div>
-  );
-}
+on:
+  push:
+    branches:
+      - main
 
-export default Universe;
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: '18'
+
+      - name: Install dependencies
+        working-directory: frontend
+        run: npm install
+
+      - name: Build
+        working-directory: frontend
+        run: npm run build
+
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./frontend/dist
