@@ -18,23 +18,19 @@ function App() {
 
   const connectWallet = async () => {
     try {
-      // 使用 MetaMask
       const provider = new ethers.providers.Web3Provider(window.ethereum);
       await provider.send("eth_requestAccounts", []);
       const signer = provider.getSigner();
       
-      // 创建合约实例
       const poemContract = new ethers.Contract(
         CONTRACT_ADDRESS,
         CONTRACT_ABI,
         signer
       );
 
-      // 获取地址
       const address = await signer.getAddress();
       setAccount(address);
       setContract(poemContract);
-
     } catch (error) {
       console.error("Connection error:", error);
     }
@@ -46,6 +42,14 @@ function App() {
 
   return (
     <div className="app">
+      <main className="main-content">
+        <Universe 
+          contract={contract}
+          account={account}
+          currentLang={currentLang}
+          t={t}
+        />
+      </main>
       <Navigation 
         t={t}
         currentLang={currentLang}
@@ -53,12 +57,6 @@ function App() {
         account={account}
         connectWallet={connectWallet}
       />
-      <main className="main-content">
-        <Universe 
-          contract={contract}
-          account={account}
-        />
-      </main>
     </div>
   );
 }
