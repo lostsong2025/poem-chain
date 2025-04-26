@@ -8,46 +8,46 @@ import './App.css';
 function App() {
   const [contract, setContract] = useState(null);
   const [account, setAccount] = useState(null);
+  const [language, setLanguage] = useState('en'); // 添加语言状态
 
   const connectWallet = async () => {
     try {
-      const provider = new ethers.providers.JsonRpcProvider({
-        url: 'http://127.0.0.1:8545',
-        chainId: 31337,
-        name: 'hardhat'
+      const provider = new ethers.providers.Web3Provider(window.ethereum);
+      const signer = provider.getSigner();
+      const accounts = await window.ethereum.request({
+        method: 'eth_requestAccounts',
       });
 
-      const signer = provider.getSigner(0);
-      
       const poemContract = new ethers.Contract(
         CONTRACT_ADDRESS,
         CONTRACT_ABI,
         signer
       );
 
-      const address = await signer.getAddress();
-      setAccount(address);
+      setAccount(accounts[0]);
       setContract(poemContract);
-
     } catch (error) {
       console.error("Connection error:", error);
     }
   };
 
-  useEffect(() => {
-    connectWallet();
-  }, []);
-
   return (
-    <div className="app">
-      <Universe 
-        contract={contract}
-        account={account}
-      />
+    <div className="app-container">
+      <div className="language-switch">
+        <button onClick={() => setLanguage(language === 'en' ? 'zh' : 'en')}>
+          {language === 'en' ? '中文' : 'EN'}
+        </button>
+      </div>
+      <Universe />
       <Navigation 
         account={account}
         connectWallet={connectWallet}
       />
+    </div>
+  );
+}
+
+export default App;
     </div>
   );
 }
