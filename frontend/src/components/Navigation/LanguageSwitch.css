@@ -1,0 +1,29 @@
+/* frontend/src/components/Navigation/LanguageSwitch.css */
+.language-switch {
+    display: flex;
+    gap: 0.5rem;
+    margin-left: 1rem;
+  }
+  
+  .lang-btn {
+    padding: 0.3rem 0.6rem;
+    background-color: #0a0a2a;
+    color: rgba(255, 255, 255, 0.7);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-size: 0.9rem;
+  }
+  
+  .lang-btn:hover {
+    color: rgba(255, 255, 255, 0.9);
+    border-color: rgba(255, 255, 255, 0.5);
+    background-color: rgba(255, 255, 255, 0.1);
+  }
+  
+  .lang-btn.active {
+    background-color: rgba(255, 255, 255, 0.1);
+    border-color: rgba(255, 255, 255, 0.5);
+    color: rgba(255, 255, 255, 0.9);
+  }

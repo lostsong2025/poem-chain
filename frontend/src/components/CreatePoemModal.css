@@ -1,0 +1,79 @@
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.7);
+    backdrop-filter: blur(5px);
+    z-index: 1000;
+}
+
+.modal {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: rgba(0, 6, 36, 0.95);
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 0 30px rgba(0, 0, 0, 0.5);
+    max-width: 500px;
+    width: 90%;
+    z-index: 1001;
+}
+
+.modal h2 {
+    color: white;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.modal input,
+.modal textarea {
+    width: 100%;
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: white;
+    padding: 12px;
+    margin: 10px 0;
+    border-radius: 8px;
+}
+
+.modal textarea {
+    min-height: 150px;
+    resize: vertical;
+}
+
+.visibility-toggle {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin: 15px 0;
+    color: white;
+}
+
+.modal-actions {
+    display: flex;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+.modal-actions button {
+    flex: 1;
+    padding: 12px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.modal-actions button:first-child {
+    background: rgba(255, 255, 255, 0.1);
+    color: white;
+}
+
+.modal-actions button:last-child {
+    background: #4CAF50;
+    color: white;
+}

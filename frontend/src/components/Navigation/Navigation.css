@@ -1,0 +1,182 @@
+/* frontend/src/components/Navigation/Navigation.css */
+.navigation {
+    height: var(--nav-height);
+    width: 100%;
+    background-color: #0a0a2a;
+    border-bottom: 1px solid #0a0a2a;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 2rem;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    z-index: 1000;
+  }
+  
+  .nav-left, .nav-center, .nav-right {
+    display: flex;
+    align-items: center;
+    white-space: nowrap;
+  }
+  
+  .nav-left {
+    flex: 0 0 auto;
+  }
+  
+  .nav-center {
+    flex: 1;
+    justify-content: center;
+    gap: 2rem;
+  }
+  
+  .nav-right {
+    flex: 0 0 auto;
+    gap: 1rem;
+  }
+  
+  .nav-logo {
+    color: rgba(255, 255, 255, 0.7);
+    text-decoration: none;
+    font-size: 1rem;
+    background-color: #0a0a2a;
+    padding: 0.5rem 1rem;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 4px;
+  }
+  
+  .nav-logo:hover {
+    color: rgba(255, 255, 255, 0.9);
+    border-color: rgba(255, 255, 255, 0.5);
+    background-color: rgba(255, 255, 255, 0.1);
+  }
+  
+  .nav-link {
+    color: rgba(255, 255, 255, 0.7);
+    text-decoration: none;
+    padding: 0.5rem 1rem;
+    transition: all 0.3s ease;
+  }
+  
+  .nav-link:hover {
+    color: rgba(255, 255, 255, 0.9);
+    background-color: rgba(255, 255, 255, 0.1);
+  }
+  
+  .search-form {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    flex-grow: 1;
+    max-width: 400px;
+  }
+  
+  .search-input {
+    padding: 0.5rem 1rem;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 4px;
+    background-color: rgba(10, 10, 42, 0.8);
+    color: rgba(255, 255, 255, 0.7);
+    min-width: 200px;
+  }
+  
+  .search-input:focus {
+    outline: none;
+    border-color: rgba(255, 255, 255, 0.5);
+    color: rgba(255, 255, 255, 0.9);
+  }
+  
+  .search-input::placeholder {
+    color: rgba(255, 255, 255, 0.5);
+  }
+  
+  .search-button {
+    padding: 0.5rem 1rem;
+    background-color: #0a0a2a;
+    color: rgba(255, 255, 255, 0.7);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+  
+  .search-button:hover {
+    color: rgba(255, 255, 255, 0.9);
+    border-color: rgba(255, 255, 255, 0.5);
+    background-color: rgba(255, 255, 255, 0.1);
+  }
+  
+  .connect-button {
+    padding: 0.5rem 1rem;
+    background-color: #0a0a2a;
+    color: rgba(255, 255, 255, 0.7);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-family: monospace;
+  }
+  
+  .connect-button:hover {
+    color: rgba(255, 255, 255, 0.9);
+    border-color: rgba(255, 255, 255, 0.5);
+    background-color: rgba(255, 255, 255, 0.1);
+  }
+  
+  .connect-button.connected {
+    background-color: #ffffff;
+    border: 1px solid #4CAF50;
+    color: #4CAF50;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 150px;
+  }
+  
+  .main-content {
+    padding-bottom: var(--nav-height) !important;
+    padding-top: 2rem !important;
+  }
+  
+  .wallet-address {
+    padding: 0.5rem 1rem;
+    background-color: #0a0a2a;
+    color: rgba(255, 255, 255, 0.7);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 4px;
+    font-family: monospace;
+    transition: all 0.3s ease;
+  }
+  
+  .wallet-address:hover {
+    border-color: rgba(255, 255, 255, 0.5);
+    color: rgba(255, 255, 255, 0.9);
+    background-color: rgba(255, 255, 255, 0.1);
+  }
+  
+  @media (max-width: 1024px) {
+    .nav-right {
+      gap: 0.5rem;
+    }
+    
+    .search-form {
+      max-width: 300px;
+    }
+  }
+  
+  @media (max-width: 768px) {
+    .navigation {
+      padding: 0 1rem;
+    }
+    
+    .nav-center {
+      gap: 1rem;
+    }
+    
+    .search-form {
+      max-width: 200px;
+    }
+    
+    .nav-link {
+      padding: 0.5rem;
+    }
+  }
