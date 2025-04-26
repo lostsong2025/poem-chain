@@ -1,7 +1,7 @@
 import React from 'react';
 import './Universe.css';
 
-const Universe = ({ contract, account, currentLang, connectWallet }) => {
+const Universe = ({ account, currentLang, connectWallet }) => {
   const translations = {
     zh: {
       title: "诗链",
@@ -25,11 +25,13 @@ const Universe = ({ contract, account, currentLang, connectWallet }) => {
 
   return (
     <div className="universe">
-      <div className="center-content">
+      <div className="main-content">
         <h1 className="title">
-          {currentLang === 'zh' ? '诗链' : 'Poem Chain'}
+          {t.title}
         </h1>
-        <div className="slogan">{t.slogan}</div>
+        <p className="slogan">
+          {t.slogan}
+        </p>
       </div>
 
       <nav className="nav-bar">
