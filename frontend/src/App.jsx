@@ -1,13 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import { ethers } from 'ethers';
-import Navigation from "./components/Navigation/Navigation";
 import Universe from "./components/Universe/Universe";
 import { translations } from "./i18n/translations";
 import { CONTRACT_ADDRESS, CONTRACT_ABI } from "./utils/contractInfo";
 import './App.css';
 
 function App() {
-  const [currentLang, setCurrentLang] = useState('en'); // 默认改为英文
+  const [currentLang, setCurrentLang] = useState('en');
   const [contract, setContract] = useState(null);
   const [account, setAccount] = useState(null);
   const t = translations[currentLang];
@@ -54,6 +53,7 @@ function App() {
         account={account}
         currentLang={currentLang}
         onLanguageChange={handleLanguageChange}
+        connectWallet={connectWallet}
       />
     </div>
   );
