@@ -16,12 +16,14 @@ jobs:
           node-version: '16'
           
       - name: Install Dependencies
-        working-directory: ./frontend
-        run: npm install
+        run: |
+          cd frontend
+          npm install
         
       - name: Build
-        working-directory: ./frontend
-        run: npm run build
+        run: |
+          cd frontend
+          npm run build
         env:
           VITE_INFURA_ID: ${{ secrets.INFURA_ID }}
           VITE_CONTRACT_ADDRESS: ${{ secrets.CONTRACT_ADDRESS }}
