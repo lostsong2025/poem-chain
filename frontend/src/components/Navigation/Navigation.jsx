@@ -9,7 +9,9 @@ function Navigation({ account, connectWallet }) {
         <button className="nav-button">My Poems</button>
         <button className="nav-button">Create Poem</button>
         {account ? (
-          <span className="wallet-display">{account}</span>
+          <span className="wallet-display">
+            {`${account.slice(0, 6)}...${account.slice(-4)}`}
+          </span>
         ) : (
           <button className="nav-button" onClick={connectWallet}>
             Connect Wallet
