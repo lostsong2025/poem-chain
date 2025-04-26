@@ -16,12 +16,14 @@ jobs:
           node-version: '18'
 
       - name: Install Dependencies
-        run: npm install
-        working-directory: frontend
+        run: |
+          cd frontend
+          npm install
 
       - name: Build
-        run: npm run build
-        working-directory: frontend
+        run: |
+          cd frontend
+          npm run build
         env:
           REACT_APP_INFURA_ID: ${{ secrets.INFURA_ID }}
           REACT_APP_CONTRACT_ADDRESS: ${{ secrets.CONTRACT_ADDRESS }}
